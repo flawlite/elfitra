@@ -7,6 +7,7 @@ import { Counts } from 'meteor/tmeasday:publish-counts';
 
 import template from './partiesList.html';
 import { Parties } from '../../../api/parties';
+import { name as PartiesSort } from '../partiesSort/partiesSort';
 import { name as PartyAdd } from '../partyAdd/partyAdd';
 import { name as PartyRemove } from '../partyRemove/partyRemove';
 
@@ -19,16 +20,14 @@ class PartiesList {
     this.perPage = 3;
     this.page = 1;
     this.sort = {
-      name: 1
+      name: -1
     };
 
     this.subscribe('parties', () => [{
       limit: parseInt(this.perPage),
       skip: parseInt((this.getReactively('page') - 1) * this.perPage),
       sort: this.getReactively('sort')}
-    ]);
-
-    this.subscribe('parties');
+    ]); 
  
     this.helpers({
       parties() {
@@ -42,8 +41,12 @@ class PartiesList {
     });
   }
 
-  pageChanged(newPage) {
+    pageChanged(newPage) {
     this.page = newPage;
+  }
+ 
+  sortChanged(sort) {
+    this.sort = sort;
   }
 }
  
@@ -54,6 +57,7 @@ export default angular.module(name, [
   angularMeteor,
   uiRouter,
   utilsPagination,
+  PartiesSort,
   PartyAdd,
   PartyRemove
 ]).component(name, {
