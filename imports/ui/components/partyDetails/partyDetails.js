@@ -14,6 +14,8 @@ class PartyDetails {
     $reactive(this).attach($scope);
  
     this.partyId = $stateParams.partyId;
+
+    this.subscribe('parties');
  
     this.helpers({
       party() {
@@ -30,7 +32,8 @@ class PartyDetails {
     }, {
       $set: {
         name: this.party.name,
-        description: this.party.description
+        description: this.party.description,
+        public: this.party.public
       }
       }, (error) => {
       if (error) {
