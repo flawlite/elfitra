@@ -1,0 +1,24 @@
+<div layout="column" layout-padding>
+    <div layout="column" layout-gt-sm="row"  layout-padding>
+        <md-card>
+            <form>
+                <md-input-container>
+                    <label>Nama Siswa</label>
+                    <input ng-model="siswaDetails.dataSiswa.nama" ng-disabled="!siswaDetails.isLoggedIn">
+                </md-input-container>
+                <md-input-container>
+                    <label>Kelas</label>
+                    <input ng-model="siswaDetails.dataSiswa.kelas" ng-disabled="!siswaDetails.isLoggedIn">
+                </md-input-container>
+                <div>
+                    <md-checkbox ng-model="siswaDetails.dataSiswa.public" ng-disabled="!siswaDetails.isLoggedIn">
+                        Publikasi Siswa
+                    </md-checkbox>
+                </div>
+                <div>
+                    <md-button ng-click="siswaDetails.save()" class="md-primary md-raised">Save</md-button>
+                </div>
+            </form>
+        </md-card>
+    </div>
+</div>

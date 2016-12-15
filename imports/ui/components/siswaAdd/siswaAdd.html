@@ -1,0 +1,22 @@
+<div layout="column" layout-padding>
+    <md-input-container>
+        <label>
+            Nama Siswa:
+        </label>
+        <input type="text" ng-model="siswaAdd.dataSiswa.nama"/>
+    </md-input-container>
+    <md-input-container>
+        <label>
+            Kelas:
+        </label>
+        <input type="text" ng-model="siswaAdd.dataSiswa.kelas"/>
+    </md-input-container>
+    <div flex>
+        <md-checkbox ng-model="siswaAdd.dataSiswa.public">
+            Publikasi Siswa?
+        </md-checkbox>
+    </div>
+    <div flex>
+        <md-button ng-click="siswaAdd.submit()" class="md-raised">Add Party!</md-button>
+    </div>
+</div>

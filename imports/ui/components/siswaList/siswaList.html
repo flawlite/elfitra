@@ -1,0 +1,85 @@
+<!--md-content layout="row" layout-align="center start" layout-fill layout-margin>
+    <md-whiteframe layout="column" flex flex-md="50" flex-lg="50" flex-gt-lg="33" class="md-whiteframe-z2" layout-fill>
+        <div>
+            <div layout="column" layout-padding>
+                <md-input-container>
+                    <label>Search</label>
+                    <input ng-model="siswaList.searchText">
+                </md-input-container>
+            <siswa-add-button ng-show="siswaList.isLoggedIn"></siswa-add-button>
+            <div flex layout="row" layout-padding>
+                <siswa-sort on-change="siswaList.sortChanged(sort)" property="name" order="1"></siswa-sort>
+            </div>
+            <div layout="column" layout-gt-sm="row">
+                <div flex="50">
+                    <md-card dir-paginate="dataSiswa in siswaList.dataSiswa | itemsPerPage: siswaList.perPage" total-items="siswaList.siswaCount">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline" ui-sref="siswaDetails({ dataSiswaId: dataSiswa._id })">
+                                    {{dataSiswa.nama}}
+                                    <siswa-remove dataSiswa="dataSiswa"></siswa-remove>
+                                </span>
+                                <span class="md-subhead">{{dataSiswa.kelas}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+
+                        </md-card-content>
+                    </md-card>
+                    <dir-pagination-controls on-page-change="siswaList.pageChanged(newPageNumber)"></dir-pagination-controls>
+                </div>
+            </div>
+        </div>
+            <md-toolbar ng-show="login.error" class="md-warn" layout="row" layout-fill layout-padding layout-margin>
+                <p class="md-body-1">{{ login.error }}</p>
+            </md-toolbar>
+        </div>
+    </md-whiteframe>
+</md-content-->
+
+<md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs flex-gt-xs="70" layout="column" ui-view="siswaDetails({ dataSiswaId: dataSiswa._id })">
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Siswa 1</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+            <md-nav-item md-nav-click="goto('page1')" name="page1">Detil Siswa</md-nav-item>
+            <md-nav-item md-nav-click="goto('page2')" name="page2">Report Pendidikan</md-nav-item>
+            <md-nav-item md-nav-click="goto('page3')" name="page3">Kontak</md-nav-item>
+            <!-- these require actual routing with ui-router or ng-route, so they won't work in the demo
+            <md-nav-item md-nav-sref="app.page4" name="page4">Page Four</md-nav-item>
+            <md-nav-item md-nav-href="#page5" name="page5">Page Five</md-nav-item>
+            -->
+            </md-nav-bar>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Action 1</md-button>
+          <md-button>Action 2</md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+    <div flex-xs flex-gt-xs="30" layout="column">
+        <md-card md-content layout-padding>
+            <md-input-container>
+                    <label>Search</label>
+                    <input ng-model="siswaList.searchText">
+                </md-input-container>
+        </md-card>
+      <md-card>
+          <md-list>
+        <md-list-item class="md-2-line" flex dir-paginate="dataSiswa in siswaList.dataSiswa | itemsPerPage: siswaList.perPage" total-items="siswaList.siswaCount" ui-sref="siswaDetails({ dataSiswaId: dataSiswa._id })">
+          <img ng-src="https://cdn3.iconfinder.com/data/icons/toolbar-people/512/reader_acrobat_adobe_rss_news_google_feed-512.png" class="md-avatar"/>
+          <div class="md-list-item-text" layout="column">
+            <h3>{{ dataSiswa.nama }}</h3>
+            <h4>{{ dataSiswa.kelas }}</h4>
+          </div>
+        </md-list-item>
+          </md-list>
+      </md-card>
+    </div>
+</md-content>
+<siswa-add-button ng-show="siswaList.isLoggedIn"></siswa-add-button>

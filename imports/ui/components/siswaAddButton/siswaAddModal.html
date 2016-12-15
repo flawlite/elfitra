@@ -1,0 +1,16 @@
+<md-dialog ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Formulir Data Siswa</h2>
+            <span flex></span>
+            <md-button ng-click="siswaAddModal.close()">
+                close
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <siswa-add done="siswaAddModal.close()"></siswa-add>
+        </div>
+    </md-dialog-content>
+</md-dialog>

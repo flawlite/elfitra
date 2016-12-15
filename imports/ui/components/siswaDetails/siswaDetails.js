@@ -4,23 +4,23 @@ import uiRouter from 'angular-ui-router';
  
 import { Meteor } from 'meteor/meteor';
  
-import template from './partyDetails.html';
-import { Parties } from '../../../api/parties';
+import template from './siswaDetails.html';
+import { DataSiswa } from '../../../api/dataSiswa';
  
-class PartyDetails {
+class SiswaDetails {
   constructor($stateParams, $scope, $reactive) {
     'ngInject';
  
     $reactive(this).attach($scope);
  
-    this.partyId = $stateParams.partyId;
+    this.dataSiswaId = $stateParams.dataSiswaId;
 
-    this.subscribe('parties');
+    this.subscribe('dataSiswa');
  
     this.helpers({
-      party() {
-        return Parties.findOne({
-          _id: $stateParams.partyId
+      dataSiswa() {
+        return DataSiswa.findOne({
+          _id: $stateParams.dataSiswaId
         });
         },
       isLoggedIn() {
@@ -30,17 +30,17 @@ class PartyDetails {
   }
   
   save() {
-    Parties.update({
-      _id: this.party._id
+    DataSiswa.update({
+      _id: this.dataSiswa._id
     }, {
       $set: {
-        name: this.party.name,
-        description: this.party.description,
-        public: this.party.public
+        nama: this.dataSiswa.nama,
+        kelas: this.dataSiswa.kelas,
+        public: this.dataSiswa.public
       }
       }, (error) => {
       if (error) {
-        console.log('Oops, unable to update the party...');
+        console.log('Oops, unable to update the siswa...');
       } else {
         console.log('Done!');
       }
@@ -48,7 +48,7 @@ class PartyDetails {
   }
 }
  
-const name = 'partyDetails';
+const name = 'siswaDetails';
  
 // create a module
 export default angular.module(name, [
@@ -57,16 +57,16 @@ export default angular.module(name, [
 ]).component(name, {
   template,
   controllerAs: name,
-  controller: PartyDetails
+  controller: SiswaDetails
 })
   .config(config);
  
 function config($stateProvider) {
   'ngInject';
  
-  $stateProvider.state('partyDetails', {
-    url: '/parties/:partyId',
-    template: '<party-details></party-details>',
+  $stateProvider.state('siswaDetails', {
+    url: '/siswa/:dataSiswaId',
+    template: '<siswa-details></siswa-details>',
     resolve: {
       currentUser($q) {
         if (Meteor.userId() === null) {

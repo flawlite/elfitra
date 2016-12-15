@@ -1,24 +1,24 @@
 import { Meteor } from 'meteor/meteor';
-import { Parties } from '../imports/api/parties';
+import { DataSiswa } from '../imports/api/dataSiswa';
  
 Meteor.startup(() => {
-  if (Parties.find().count() === 0) {
-    const parties = [{
-      'name': 'Dubstep-Free Zone',
-      'description': 'Fast just got faster with Nexus S.',
+  if (DataSiswa.find().count() === 0) {
+    const dataSiswa = [{
+      'nama': 'Feri Nurdian',
+      'kelas': '1B',
       'public' : true
     }, {
-      'name': 'All dubstep all the time',
-      'description': 'Get it on!',
+      'nama': 'Andini Pratiwi',
+      'kelas': '2C',
       'public' : true
     }, {
-      'name': 'Savage lounging',
-      'description': 'Leisure suit required. And only fiercest manners.',
+      'nama': 'Judika Dimana',
+      'kelas': '3D',
       'public' : true
     }];
  
-    parties.forEach((party) => {
-      Parties.insert(party)
+    dataSiswa.forEach((dataSiswa) => {
+      DataSiswa.insert(dataSiswa)
     });
   }
 });
