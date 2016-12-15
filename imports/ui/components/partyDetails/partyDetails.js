@@ -22,6 +22,9 @@ class PartyDetails {
         return Parties.findOne({
           _id: $stateParams.partyId
         });
+        },
+      isLoggedIn() {
+        return !!Meteor.userId();
       }
     });
   }
